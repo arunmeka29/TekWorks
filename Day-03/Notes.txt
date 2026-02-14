@@ -1,0 +1,40 @@
+python -m venv myenv-----> env creation
+
+myenv\Scripts\activate---->activation
+
+deactivation..
+
+Using conda env creation
+
+conda create --name myenv pyhton=3.10
+
+
+DDL--->:DRcat-->drop,rename,create,alter,truncate.
+** **
+DML--->:sudi-->select,update,delete,insert.
+
+DQL-->
+
+SELECT – fetch data
+** **
+WHERE – condition
+
+ORDER BY – sort
+
+GROUP BY – group rows
+
+HAVING – filter groups
+
+TCL-->
+
+COMMIT – save changes
+
+ROLLBACK – undo changes
+
+SAVEPOINT – checkpoint
+
+DCL-->
+
+GRANT – give access
+
+REVOKE – remove access
