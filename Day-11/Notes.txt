@@ -1,0 +1,116 @@
+Linear Regression: Gives Best Fit Line (y=mx+c)
+Relation blw dependent and independent varaibel 
+
+MSE = (1/n) * Σ (yi − ŷi)²    ---->when there is no outilers(high sensitive)
+
+MAE = (1/n) × Σ |yi − ŷi|     ---> when there  is outilers(less sensitive)
+
+Recedual Error=actual-predicted
+
+Slope?(Optimizer Techinque Over come the loss)-->Gradient Descent we are using
+
+Gradient Descent---
+
+MSE AND MAE---->Regression Model---->LOSS FUCNTION..(Available)
+
+
+R^2---->Range(0 to 1)
+
+0-> Model is not good
+
+1->Model is good
+
+
+
+
+
+         Machine Learning Pipeline
+
+Step 1: Import Required Lib
+
+Step 2: Load the Datasets->head,tail,info,columns
+
+Step 3: Data Preprocessing->missing,detect outilers
+
+Step 4:  EDA (Exploratory Data Analysis)
+
+Step 5: Feature Engineering
+
+Step 6: Divide data into X and Y (input Feature and output Feature)
+
+Step 7: splitting Dataset into train and testing
+
+Step 8: Train Model
+        1.Import the Model
+        2.Load the Model
+        3.Fit Model on the train data (i.e=Train Model)
+        4.predict the testing data
+
+Step 9: Check Model loss Function 
+
+Step 10: Check Model Evaluation Metrics
+
+Step 11: Save the Model
+
+
+input-->Features-->independent-->random variable--> x data
+
+output--> target-->label-->dependent-->prediction column
+
+
+categorical data 
+1.Nominal ------> one hot Encoding(sql Techinque)  dummines(pandas Techinque)
+2.Ordinal ------> Ordinal Encoding 
+
+
+text data  to numercial---> encoding.
+
+
+
+task 1: Brand col convert into number using one hot encoding
+
+task 2: brand_encoded add in the dataframe
+
+task 3: all brand col convert into int
+
+task 4: Divide data into x and Y
+
+task 5: split data into train and test
+
+Task 6: train model , load model , fit model , predict
+ 
+Task 7: find the mse , mae
+ 
+Task 8: find the r2 
+
+
+
+
+Dataset Resources: 
+ 
+1. https://www.kaggle.com/
+
+2. https://registry.openddata.aws
+
+3. https://datasetsearch.research.google.com/
+
+4. https://archive.ics.uci.edu/
+
+5. https:msropendata.com
+
+6. https://github.com/awesomedata/awesome-public-datasets
+
+7. https://scikit-learn.org/stable
+
+8. https://www.visualdata.io/discovery
+
+9. https://data.gov.in
+
+10. https://data.gov/
+
+11. https://www.opendatani.gov.uk/
+
+12. https://data.europa.eu/euodp/data/dataset
+Kaggle: Your Machine Learning and Data Science Community
+Kaggle is the world’s largest data science community with powerful tools and resources to help you achieve your data science goals.
+ 

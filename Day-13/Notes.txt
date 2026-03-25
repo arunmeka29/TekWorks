@@ -1,0 +1,48 @@
+Why we need to learn ml ?
+
+given number is even or odd 
+
+step: input :5
+      rule or condition num%2==0
+
+      output
+      
+
+      gmail-- spam
+      10--5
+      won 1000000
+      to many links
+      keywords
+
+
+
+      fixed no of rules-- traditional progrmaming  (input and output)
+
+      no set of rules--- ml need
+
+
+ml  it is a Techinque it learns the pattern from the existing data....
+
+
+--->collect the data.
+--->Pre-Preprocessing.
+--->Identify the patterns and Trends.
+--->Testing
+--->Evaluations
+--->Predictions
+
+
+1.Supervised Learning
+--->classification.
+--->Regression.
+
+1.Linear Regression:
+
+numpy->
+
+
+Underfitting:
+Poor performance in both training and testing data.
+
+Overfitting:
+Good performance in training data but poor performance in testing data.
