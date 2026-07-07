@@ -1,0 +1,17 @@
+#key reasons used for Data Analysis
+
+1.To make better decision
+2.To find the patterns and 
+
+
+
+
+
+
+
+1:Handled missing and types of missing
+2:Handled outlier
+3:Normalize Values
+4:Features imp
+
+

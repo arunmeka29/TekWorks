@@ -1,0 +1,726 @@
+/* index.css - Sci-fi Mainframe Fullscreen Dashboard Theme */
+
+/* --- 1. Global Setup & Fonts ----------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Rajdhani:wght@500;600;700&family=Source+Code+Pro:wght@400;600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #020306;
+  color: #e2e8f0;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* --- 2. Fullscreen Page Wrapper -------------------------------------------- */
+.dashboard-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 50%, #060814 0%, #010204 100%);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: bootupFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bootupFade {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.cyber-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(rgba(0, 242, 254, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.012) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.glow-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(180px);
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.glow-sphere-1 {
+  width: 600px;
+  height: 600px;
+  background: #00f2fe;
+  top: -15%;
+  left: 10%;
+}
+
+.glow-sphere-2 {
+  width: 700px;
+  height: 700px;
+  background: #f857a6;
+  bottom: -20%;
+  right: 10%;
+}
+
+/* --- 3. HUD Header & Footer (Sci-Fi Frames) ------------------------------- */
+.hud-header {
+  height: 70px;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.08);
+  background: linear-gradient(180deg, rgba(2, 3, 6, 0.95) 0%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+  font-family: 'Rajdhani', sans-serif;
+  z-index: 5;
+}
+
+.hud-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hud-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 242, 254, 0.06);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #00f2fe;
+  margin-bottom: 2px;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #39ff14;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #39ff14;
+  animation: pulseDot 1.2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.hud-main-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #fff;
+  line-height: 1;
+}
+
+.hud-stats-block {
+  display: flex;
+  gap: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #475569;
+  align-items: center;
+}
+
+.hud-stats-block .divider {
+  color: #1e293b;
+}
+
+.status-active {
+  color: #39ff14;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.4);
+}
+
+.status-scanning {
+  color: #00f2fe;
+  text-shadow: 0 0 6px rgba(0, 242, 254, 0.4);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hud-footer {
+  height: 40px;
+  border-top: 1px solid rgba(0, 242, 254, 0.08);
+  background: linear-gradient(0deg, rgba(2, 3, 6, 0.95) 0%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #334155;
+  z-index: 5;
+}
+
+/* --- 4. Main Dashboard Grid Layout ----------------------------------------- */
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  gap: 2.2rem;
+  padding: 1.5rem 2.5rem 2rem 2.5rem;
+  overflow: hidden;
+}
+
+/* --- 5. Left Panel: Control Console ---------------------------------------- */
+.control-panel {
+  width: 340px;
+  background: rgba(6, 8, 20, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s;
+}
+
+.control-panel:hover {
+  border-color: rgba(0, 242, 254, 0.25);
+}
+
+.panel-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #475569;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.panel-title.font-code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* Sci-fi Frame Corner Brackets */
+.corner-bracket {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: #00f2fe;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.top-left { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.top-right { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.bottom-left { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.bottom-right { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.telemetry-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.telemetry-card {
+  background: rgba(3, 5, 12, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.card-lbl {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #475569;
+}
+
+.card-val-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.card-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.card-unit {
+  font-size: 0.7rem;
+  color: #334155;
+}
+
+.neon-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+  margin: 6px 0 2px 0;
+}
+
+.neon-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.slider-cyan::-webkit-slider-thumb {
+  background: #00f2fe;
+  color: rgba(0, 242, 254, 0.4);
+}
+
+.slider-magenta::-webkit-slider-thumb {
+  background: #f857a6;
+  color: rgba(248, 87, 166, 0.4);
+}
+
+.empty-result-card {
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: rgba(3, 5, 12, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  color: #475569;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.scanning-status {
+  padding: 0.6rem;
+  border-radius: 6px;
+  background: rgba(0, 242, 254, 0.02);
+  border: 1px dashed rgba(0, 242, 254, 0.15);
+  color: #00f2fe;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scanning-status.idle {
+  color: #334155;
+  border-color: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.005);
+}
+
+.scanner-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #00f2fe;
+  box-shadow: 0 0 6px #00f2fe;
+  animation: scanProgress 2s infinite ease-in-out;
+}
+
+@keyframes scanProgress {
+  0% { left: 0%; }
+  50% { left: 99%; }
+  100% { left: 0%; }
+}
+
+/* Ticker Console Ticker Logs */
+.sys-logs-container {
+  background: rgba(3, 5, 12, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.65rem;
+  color: #334155;
+  flex: 1;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-item {
+  color: #475569;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: logSlide 0.2s ease-out;
+}
+
+@keyframes logSlide {
+  from { transform: translateY(-5px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.log-item:first-child {
+  color: #00f2fe;
+  font-weight: 600;
+}
+
+/* --- 6. Right Panel: Cyber Radar mapping view ------------------------------- */
+.radar-panel {
+  flex: 1;
+  background: rgba(6, 8, 20, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 242, 254, 0.12);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s;
+}
+
+.radar-panel:hover {
+  border-color: rgba(0, 242, 254, 0.22);
+}
+
+.radar-grid-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.axis-label-x, .axis-label-y {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #334155;
+}
+
+.axis-label-y {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  transform: translateX(38px);
+}
+
+.axis-label-x {
+  margin-top: 8px;
+}
+
+.grid-outer {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.axis-y-ticks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 28px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  color: #334155;
+  font-weight: 600;
+  padding: 8px 0;
+}
+
+.interactive-grid {
+  flex: 1;
+  aspect-ratio: 16 / 10;
+  background: rgba(3, 5, 12, 0.95);
+  border: 1.5px solid rgba(0, 242, 254, 0.15);
+  border-radius: 8px;
+  position: relative;
+  cursor: crosshair;
+  overflow: hidden;
+  box-shadow: inset 0 2px 20px rgba(0,0,0,0.9);
+}
+
+.grid-crosshairs-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+}
+
+.grid-scanlines {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.25), transparent);
+  animation: scanGrid 5s linear infinite;
+  z-index: 2;
+}
+
+@keyframes scanGrid {
+  0% { top: -2%; }
+  100% { top: 102%; }
+}
+
+/* Concentric Radar range rings */
+.radar-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(0, 242, 254, 0.03);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ring-1 { width: 25%; aspect-ratio: 1; }
+.ring-2 { width: 55%; aspect-ratio: 1; }
+.ring-3 { width: 85%; aspect-ratio: 1; }
+
+/* Conic Radar Scanner bar sweep */
+.grid-radar-sweep {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, rgba(0, 242, 254, 0.03) 0deg, transparent 120deg, transparent 360deg);
+  animation: radarSweep 10s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes radarSweep {
+  to { transform: rotate(360deg); }
+}
+
+.axis-x-ticks {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  margin-left: 40px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  color: #334155;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* --- 7. Target Crosshair ------------------------------------------------- */
+.target-crosshair {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+  transition: all 0.12s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.target-crosshair::before, .target-crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(0, 242, 254, 0.55);
+}
+
+.target-crosshair::before {
+  top: -14px;
+  left: -0.5px;
+  width: 1px;
+  height: 28px;
+}
+
+.target-crosshair::after {
+  top: -0.5px;
+  left: -14px;
+  width: 28px;
+  height: 1px;
+}
+
+.target-aim-box {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(0, 242, 254, 0.75);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.35);
+}
+
+.pulse-ring {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #00f2fe;
+  border-radius: 50%;
+  animation: pulseRing 1.8s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.4); opacity: 1; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.coord-readout {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(3, 5, 12, 0.95);
+  border: 1px solid rgba(0, 242, 254, 0.45);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #00f2fe;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+
+/* --- 8. Target Segment Classified Result ---------------------------------- */
+.result-card {
+  padding: 1.15rem;
+  border-radius: 12px;
+  background: rgba(3, 5, 12, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.result-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #475569;
+}
+
+.cluster-value-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cluster-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.cluster-id {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 0 15px currentColor;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #334155;
+}
+
+/* Cluster color mappings */
+.glow-cyan {
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 18px rgba(0, 242, 254, 0.1);
+}
+.glow-cyan .cluster-id, .glow-cyan .pulse-dot { color: #00f2fe; }
+
+.glow-magenta {
+  border-color: rgba(248, 87, 166, 0.3);
+  box-shadow: 0 0 18px rgba(248, 87, 166, 0.1);
+}
+.glow-magenta .cluster-id, .glow-magenta .pulse-dot { color: #f857a6; }
+
+.glow-lime {
+  border-color: rgba(57, 255, 20, 0.3);
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.1);
+}
+.glow-lime .cluster-id, .glow-lime .pulse-dot { color: #39ff14; }
+
+.glow-yellow {
+  border-color: rgba(255, 221, 87, 0.3);
+  box-shadow: 0 0 18px rgba(255, 221, 87, 0.1);
+}
+.glow-yellow .cluster-id, .glow-yellow .pulse-dot { color: #ffdd57; }
+
+/* --- 9. Errors & Responsive Tweaks --------------------------------------- */
+.error-card {
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .dashboard-content {
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 1.5rem;
+  }
+  .control-panel {
+    width: 100%;
+  }
+  .interactive-grid {
+    aspect-ratio: 16 / 10;
+  }
+}

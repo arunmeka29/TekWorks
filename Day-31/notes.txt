@@ -1,0 +1,14 @@
+GRU:
+1.Limited Resources
+2.Short to Medium
+3.Simple to Moderate
+4.Limited Data
+5.Limited Time
+
+
+LSTM:
+1.Abundant Resources -->Resources constraints
+2.Very Long      -->sequence length
+3.Highly Complex -->Problem complexity
+4.Abundant Data  --> Dataset size
+5.ample time     -->Experimentation budget

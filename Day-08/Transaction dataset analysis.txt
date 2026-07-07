@@ -1,0 +1,70 @@
+What is the total sales amount across all transactions? 1
+
+Which month had the highest total transaction amount?  2
+
+What is the average transaction amount per customer?   3
+
+What is the trend of total sales over months?         4
+
+What is the highest single transaction amount recorded?   5
+
+Which service category contributes the most to total revenue?   6
+
+Which product generated the highest revenue?   7
+
+How does the average transaction amount vary between services?   8
+
+How many unique customers made purchases?    9
+
+Which customers have spent the most overall? 10
+
+What is the average number of transactions per customer? 11 
+
+Are there customers who made multiple purchases in different categories?   12 
+
+What percentage of customers are repeat buyers?  13 
+
+Which product category has the highest total sales? 14
+
+Which services are most popular by transaction count?  15
+
+For each service, which product type is purchased most frequently?  16
+
+What is the average transaction amount per product type?  17 
+
+Are there specific services where customers spend significantly more? 18
+
+Which state has the highest total sales? 19 
+
+Which city records the highest number of transactions? 20
+
+What is the average spending per transaction in each state? 21
+
+Are certain services more popular in specific states?  22
+
+Which states buy the most Outdoor Recreation products? 23
+
+Compare average spending between California and Texas customers.   24
+
+Which quarter of the year saw the highest sales? 25
+
+How does total sales vary month by month? 26
+
+What is the total number of transactions per month?   27 
+
+Is there a particular season when sports equipment sales spike?  28
+ 
+How many transactions were done using credit?   29 
+
+What is the total revenue generated from credit transactions?  30 
+  
+Is there a difference in average spending between credit and debit customers?    31
+
+Which states or cities should the company focus on for marketing high-value products?  32 
+
+Should more inventory be stocked for Exercise & Fitness products given their popularity?  33
+
+Are there product categories with high sales but low average transaction amounts?  34
+
+Are there underperforming service categories that need promotional offers? 35 
+
