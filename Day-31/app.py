@@ -1,6 +1,7 @@
 import os
 import pickle
 import warnings
+from pathlib import Path
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
@@ -14,9 +15,11 @@ import numpy as np
 import streamlit as st
 
 
-MODEL = "char_rnn_many_to_many.keras"
-VOCAB = "char_vocab.pkl"
-DATASET = "tiny-shakespeare.txt"
+BASE_DIR = Path(__file__).resolve().parent
+
+MODEL = BASE_DIR / "char_rnn_many_to_many.keras"
+VOCAB = BASE_DIR / "char_vocab.pkl"
+DATASET = BASE_DIR / "tiny-shakespeare.txt"
 
 SEQ_LEN = 80
 STEP_SIZE = 3
@@ -106,7 +109,7 @@ def build_model(vocab_size):
 
 def train_model():
     if not os.path.exists(DATASET):
-        raise FileNotFoundError(f"{DATASET} was not found.")
+        raise FileNotFoundError(f"{DATASET.name} was not found.")
 
     _, EarlyStopping, _, _, _, _, _, _ = import_tensorflow()
 
@@ -236,7 +239,7 @@ st.caption("The model learns a next-character sequence at every time step.")
 st.info("The page now loads first. TensorFlow is loaded only when you generate text or retrain the model.")
 
 if not os.path.exists(DATASET):
-    st.error(f"{DATASET} was not found in the current folder.")
+    st.error(f"{DATASET.name} was not found next to app.py.")
     st.stop()
 
 training_stats = None
