@@ -17,7 +17,6 @@ st.set_page_config(
 BASE_DIR = Path(__file__).resolve().parent
 MODEL = BASE_DIR / "spam_model.keras"
 TOKENIZER = BASE_DIR / "tokenizer.pkl"
-DATASET = BASE_DIR / "spam.csv"
 
 MAX_WORDS = 5000
 MAX_LEN = 50
@@ -34,6 +33,20 @@ def model_files_exist():
     return MODEL.exists() and TOKENIZER.exists()
 
 
+def find_project_file(filename):
+    candidates = [
+        BASE_DIR / filename,
+        Path.cwd() / filename,
+    ]
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    searched_paths = ", ".join(str(path) for path in candidates)
+    raise FileNotFoundError(f"{filename} not found. Checked: {searched_paths}")
+
+
 def train_model():
     import pandas as pd
     from sklearn.metrics import classification_report, confusion_matrix
@@ -43,10 +56,8 @@ def train_model():
     from tensorflow.keras.preprocessing.sequence import pad_sequences
     from tensorflow.keras.preprocessing.text import Tokenizer
 
-    if not DATASET.exists():
-        raise FileNotFoundError(f"Dataset not found: {DATASET}")
-
-    df = pd.read_csv(DATASET, encoding="latin-1")
+    dataset_path = find_project_file("spam.csv")
+    df = pd.read_csv(dataset_path, encoding="latin-1")
     df = df[["v1", "v2"]].copy()
     df.columns = ["label", "text"]
 
@@ -146,12 +157,16 @@ if not model_ready:
     st.warning("Model files are missing. Train the model once to start predictions.")
 
     if st.button("Train Model"):
-        with st.spinner("Training model. Please wait..."):
-            train_model()
-            load_saved_model.clear()
-            load_saved_tokenizer.clear()
-        model_ready = True
-        st.success("Training completed! You can predict messages now.")
+        try:
+            with st.spinner("Training model. Please wait..."):
+                train_model()
+                load_saved_model.clear()
+                load_saved_tokenizer.clear()
+            model_ready = True
+            st.success("Training completed! You can predict messages now.")
+        except FileNotFoundError as error:
+            st.error(f"Training failed: {error}")
+            st.info("For deployment, keep `spam.csv` in the same folder as `app.py` and redeploy the latest commit.")
 
 if st.button("Predict", disabled=not model_ready):
     if message.strip() == "":
