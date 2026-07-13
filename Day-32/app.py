@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
  
 from src.data_loader import DataLoader
 from src.forecast import Forecaster
@@ -769,7 +772,7 @@ st.markdown("""
 # ------------------------------------------------
  
 with st.sidebar:
-    st.image("assets/a.png", width=100)
+    st.image(os.path.join(BASE_DIR, "assets", "a.png"), width=100)
     st.title("Settings")
     future_months = st.slider("Forecast Horizon (Months)", 1, 24, 12)
     st.info("Adjust the slider to change the prediction window for the RNN model.")
@@ -812,7 +815,7 @@ with st.sidebar:
 # Data & Header
 # ------------------------------------------------
  
-loader = DataLoader("data/airline-passengers.csv")
+loader = DataLoader(os.path.join(BASE_DIR, "data", "airline-passengers.csv"))
 df = loader.load_data()
  
 st.markdown("""

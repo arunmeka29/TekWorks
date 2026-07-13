@@ -9,10 +9,13 @@ Purpose: Scale the dataset using MinMaxScaler
 """
  
 # Import required libraries
+import os
 import joblib
 import pandas as pd
  
 from sklearn.preprocessing import MinMaxScaler
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
  
 class Preprocessor:
@@ -57,7 +60,7 @@ class Preprocessor:
         # print(scaled_df.head())
  
         # Save the scaler
-        joblib.dump(self.scaler, "models/scaler.pkl")
+        joblib.dump(self.scaler, os.path.join(ROOT_DIR, "models", "scaler.pkl"))
  
         print("\nScaler saved successfully.")
  

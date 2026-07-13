@@ -9,6 +9,7 @@ Purpose: Evaluate LSTM Model Performance
 ====================================================
 """
  
+import os
 import numpy as np
  
 from sklearn.metrics import (
@@ -17,6 +18,8 @@ from sklearn.metrics import (
 )
  
 from src.predict import Predictor
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
  
 class Evaluator:
@@ -67,7 +70,7 @@ class Evaluator:
         # -----------------------------
  
         with open(
-            "outputs/metrics.txt",
+            os.path.join(ROOT_DIR, "outputs", "metrics.txt"),
             "w"
         ) as file:
  

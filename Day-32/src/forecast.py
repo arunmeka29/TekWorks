@@ -9,6 +9,7 @@ Purpose: Forecast Future Passenger Counts
 ====================================================
 """
  
+import os
 import numpy as np
 import joblib
  
@@ -17,16 +18,17 @@ from tensorflow.keras.models import load_model
 from src.data_loader import DataLoader
 from src.preprocessing import Preprocessor
  
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
 class Forecaster:
  
     def __init__(self):
  
-        self.data_path = "data/airline-passengers.csv"
+        self.data_path = os.path.join(ROOT_DIR, "data", "airline-passengers.csv")
  
-        self.model_path = "models/lstm_model.keras"
+        self.model_path = os.path.join(ROOT_DIR, "models", "lstm_model.keras")
  
-        self.scaler_path = "models/scaler.pkl"
+        self.scaler_path = os.path.join(ROOT_DIR, "models", "scaler.pkl")
  
         self.sequence_length = 12
  

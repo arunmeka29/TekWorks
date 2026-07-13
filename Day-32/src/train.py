@@ -8,18 +8,21 @@ Purpose: Train the LSTM Model
 ====================================================
 """
  
+import os
 from src.data_loader import DataLoader
 from src.preprocessing import Preprocessor
 from src.sequence_generator import SequenceGenerator
 from src.train_test_split import TimeSeriesSplit
 from src.model import ModelBuilder
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
  
 class ModelTrainer:
  
     def __init__(self):
  
-        self.data_path = "data/airline-passengers.csv"
+        self.data_path = os.path.join(ROOT_DIR, "data", "airline-passengers.csv")
  
     def train(self):
  
@@ -94,7 +97,7 @@ class ModelTrainer:
         # Step 7 : Save Model
         # ----------------------------
  
-        model.save("models/lstm_model.keras")
+        model.save(os.path.join(ROOT_DIR, "models", "lstm_model.keras"))
  
         print("\nModel Saved Successfully.")
  

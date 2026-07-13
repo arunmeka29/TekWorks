@@ -9,6 +9,7 @@ Purpose: Predict Passenger Counts
 ====================================================
 """
  
+import os
 import joblib
 import numpy as np
  
@@ -19,16 +20,17 @@ from src.preprocessing import Preprocessor
 from src.sequence_generator import SequenceGenerator
 from src.train_test_split import TimeSeriesSplit
  
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
 class Predictor:
  
     def __init__(self):
  
-        self.data_path = "data/airline-passengers.csv"
+        self.data_path = os.path.join(ROOT_DIR, "data", "airline-passengers.csv")
  
-        self.model_path = "models/lstm_model.keras"
+        self.model_path = os.path.join(ROOT_DIR, "models", "lstm_model.keras")
  
-        self.scaler_path = "models/scaler.pkl"
+        self.scaler_path = os.path.join(ROOT_DIR, "models", "scaler.pkl")
  
     def predict(self):
  

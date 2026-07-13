@@ -9,7 +9,10 @@ Purpose: Visualize Model Performance
 ====================================================
 """
  
+import os
 import matplotlib.pyplot as plt
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
  
  
 class Visualizer:
@@ -48,7 +51,7 @@ class Visualizer:
  
         plt.grid(True)
  
-        plt.savefig("outputs/loss_curve.png")
+        plt.savefig(os.path.join(ROOT_DIR, "outputs", "loss_curve.png"))
  
         plt.show()
  
@@ -83,7 +86,7 @@ class Visualizer:
  
         plt.grid(True)
  
-        plt.savefig("outputs/prediction.png")
+        plt.savefig(os.path.join(ROOT_DIR, "outputs", "prediction.png"))
  
         plt.show()
  
@@ -110,7 +113,7 @@ class Visualizer:
  
         plt.grid(True)
  
-        plt.savefig("outputs/forecast.png")
+        plt.savefig(os.path.join(ROOT_DIR, "outputs", "forecast.png"))
  
         plt.show()
  
