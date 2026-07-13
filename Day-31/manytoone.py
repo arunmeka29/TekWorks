@@ -12,14 +12,18 @@ from tensorflow.keras.callbacks import EarlyStopping
 st.set_page_config(page_title="Heart Rate Forecasting", layout="wide")
 st.title("❤️ Heart Rate Forecasting using One-to-Many RNN")
 
-CSV_FILE = "heart_rate.csv"
-MODEL_FILE = "heart_rnn.keras"
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
+CSV_FILE = BASE_DIR / "heart_rate.csv"
+MODEL_FILE = BASE_DIR / "heart_rnn.keras"
 
 if not os.path.exists(CSV_FILE):
     st.error("Place heart_rate.csv in the same folder as app.py")
     st.stop()
 
-df = pd.read_csv(CSV_FILE)
+df = pd.read_csv(str(CSV_FILE))
 series = df["T1"].astype(float).values.reshape(-1,1)
 
 
